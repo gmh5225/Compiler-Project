@@ -24,11 +24,6 @@ namespace charinfo
     {
         return c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '!' || c == '<' || c == '>';
     }
-    LLVM_READNONE inline bool isSemicolon(char c)
-    {
-        return c == ';';
-    }
-
 }
 
 void Lexer::next(Token &token)
@@ -54,7 +49,7 @@ void Lexer::next(Token &token)
         if (Name == "int")
             kind = Token::KW_int;
         else if (Name == "begin")
-            kind = Token::KW_begin;
+            kind = Token::begin;
         else if (Name == "end")
             kind = Token::End;
         else if (Name == "and")
@@ -106,22 +101,22 @@ void Lexer::next(Token &token)
                 kind = Token::mul_equal;
             else
                 kind = Token::mul;
-        } else if (Name == "/"){
+        } else if (Name == "/") {
             if (end == '=')
                 kind = Token::slash_equal;
             else
                 kind = Token::slash;
-        } else if (Name == ">"){
+        } else if (Name == ">") {
             if (end == '=')
                 kind = Token::gte;
             else
                 kind = Token::gt;
-        } else if (Name == "<"){
+        } else if (Name == "<") {
             if (end == '=')
                 kind = Token::lte;
             else
                 kind = Token::lt;
-        } else if (Name == "!"){
+        } else if (Name == "!") {
             if (end == '=')
                 kind = Token::not_equal;
             else
@@ -156,27 +151,6 @@ void Lexer::next(Token &token)
         // generate the token
         formToken(token, end, kind);
         return;
-
-        //         switch (*BufferPtr)
-        //         {
-        // #define CASE(ch, tok)                         \
-//     case ch:                                  \
-//         formToken(token, BufferPtr + 1, tok); \
-//         break
-        //             CASE('+', Token::plus);
-        //             CASE('-', Token::minus);
-        //             CASE('*', Token::star);
-        //             CASE('/', Token::slash);
-        //             CASE('(', Token::l_paren);
-        //             CASE(')', Token::r_paren);
-        //             CASE(';', Token::semicolon);
-        //             CASE(',', Token::Token::comma);
-        //             CASE('=', Token::equal);
-        // #undef CASE
-        //         default:
-        //             formToken(token, BufferPtr + 1, Token::unknown);
-        //         }
-        //         return;
     }
 }
 
