@@ -15,19 +15,40 @@ public:
     {
         eoi,     // end of input
         unknown, // in case of error at the lexical level
-        ident,
+        id,      // identifier 
         number,
         equal,
+        is_equal, 
+        not_equal,
         comma,
         semicolon,
+        colon,   // :
         plus,
+        plus_equal,
+        end,
+        begin,
+        mod,
+        mod_equal,
         minus,
-        star,
+        minus_equal,
+        and,
+        or,
+        power,
+        gt,    // >
+        gte,   // >=
+        lt,    // <
+        lte    // <=
+        mul,
+        mul_equal,
         slash,
+        slash_equal,
+        if,
+        elif,
+        else,
+        loopc,      // exclamation
         l_paren,
         r_paren,
-        KW_type,
-        KW_int
+        KW_int,
     };
 
 private:
